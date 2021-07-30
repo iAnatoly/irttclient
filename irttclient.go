@@ -13,12 +13,12 @@ func main() {
 
 	cfg.LocalAddress = ":0"
 	cfg.RemoteAddress = "127.0.0.1:2112"
-	cfg.OpenTimeouts = []time.Duration{1 * time.Second, 1 * time.Second, 1 * time.Second}
-	cfg.Duration = 10 * time.Second
-	cfg.Interval = 1 * time.Second
-	cfg.Length = 0
-	cfg.Clock = 0x03 // Wall | Monotonic
-	cfg.IPVersion = 1
+	cfg.OpenTimeouts, _ = irtt.ParseDurations("1s")
+	cfg.Duration, _ = time.ParseDuration("1s")
+	cfg.Interval, _ = time.ParseDuration("20ms")
+	cfg.Length = 100
+	cfg.Clock = irtt.BothClocks
+	cfg.IPVersion = irtt.IPVersionFromBooleans(true, true, irtt.DualStack)
 	cfg.TTL = 64
 	cfg.HMACKey = []byte("wazzup")
 
