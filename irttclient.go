@@ -30,7 +30,10 @@ func main() {
 		fmt.Println(err)
 		return
 	}
-	fmt.Println(r.RoundTripIPDVStats)
+	fmt.Printf("RTT min/mean/max: %s/%s/%s\n", r.RTTStats.Min, r.RTTStats.Mean(), r.RTTStats.Max)
+	fmt.Printf("jitter min/mean/max: %s/%s/%s\n", r.RoundTripIPDVStats.Min, r.RoundTripIPDVStats.Mean(), r.RoundTripIPDVStats.Max)
+	fmt.Printf("late packet count/percent: %d/%f\n", r.LatePackets, r.LatePacketsPercent)
+	fmt.Printf("lost packet percent: %f\n", r.PacketLossPercent)
 
 	fmt.Println("all done")
 }
